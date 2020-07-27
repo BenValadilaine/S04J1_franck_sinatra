@@ -15,6 +15,4 @@ Then, you can :
 
 - Use the code linter to get a clean code by using command `rubocop`
 ### Presentation
-
-
-
+It is a quite basic sinatra application that allows users to write & store gossips.

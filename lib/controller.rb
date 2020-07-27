@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/gossips/new/' do
+    erb :new_gossip
     Gossip.new(params["gossip_author"],params["gossip_content"]).save
     # La ligne en dessous est aussi valide :
     # Gossip.new(params[:gossip_author],params[:gossip_content]).save
@@ -17,4 +18,15 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
+  get '/gossips/:id/' do
+    erb :show, locals: {gossip: Gossip.find(params['id'])}
+  end
+
+  get '/gossips/edit/:id/' do
+    erb :edit, locals: {gossip: Gossip.find(params['id']), gossips_all: Gossip.all}
+  end
+
+  get '/gossips/edit/' do
+    Gossip.update(params["id"])
+    redirect
 end
